@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "747366710582",
+    "project_id": "payper-banking",
+    "storage_bucket": "payper-banking.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:747366710582:android:250c1d7060cb191bf64797",
+        "android_client_info": {
+          "package_name": "com.example.mobile_banking"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhEu8X5JMrEBaQRRmQfguvJbORNNIbPw4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

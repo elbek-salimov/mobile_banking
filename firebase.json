@@ -1,0 +1,1 @@
+{"flutter":{"platforms":{"android":{"default":{"projectId":"payper-banking","appId":"1:747366710582:android:250c1d7060cb191bf64797","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"payper-banking","configurations":{"android":"1:747366710582:android:250c1d7060cb191bf64797","ios":"1:747366710582:ios:378937f2a9fce573f64797"}}}}}}
