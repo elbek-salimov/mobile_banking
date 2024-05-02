@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_banking/screens/auth/widgets/global_textfield.dart';
+import 'package:mobile_banking/utils/constants/app_constants.dart';
 import 'package:size_util/size_util.dart';
 import '../../utils/styles/app_text_styles.dart';
 
@@ -42,33 +43,25 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
                   AppTextStyle.interLight.copyWith(fontSize: 18)),
               SizedBox(height: 20.h),
               GlobalTextField(
+                validateEmptyText: 'Enter email',
+                validateText: 'Incorrect email',
+                validate: AppConstants.emailRegExp,
                 title: 'Email',
-                icon: const Icon(Icons.email),
+                icon: const Icon(Icons.email, color: Colors.green),
                 controller: emailController,
               ),
               SizedBox(height: 30.h),
-              Padding(
-                padding: EdgeInsets.only(left: 17.w, right: 17.w),
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(50),
-                  onTap: () {
-
-                  },
-                  child: Ink(
-                    height: 50.h,
-                    decoration: BoxDecoration(
-                      color: Colors.green,
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'RESET',
-                        style: AppTextStyle.interSemiBold.copyWith(
-                          fontSize: 13,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
+              SizedBox(
+                width: double.infinity,
+                height: 50.h,
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    backgroundColor: Colors.green,
+                  ),
+                  onPressed: () {},
+                  child: Text(
+                    'Reset',
+                    style: AppTextStyle.interBold.copyWith(color: Colors.white),
                   ),
                 ),
               ),

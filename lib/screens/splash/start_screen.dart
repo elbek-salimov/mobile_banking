@@ -31,7 +31,7 @@ class StartScreen extends StatelessWidget {
                   backgroundColor: Colors.green,
                 ),
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, RouteNames.registerRoute);
+                  Navigator.pushNamed(context, RouteNames.registerRoute);
                 },
                 child: Text(
                   'Create new account',
@@ -49,7 +49,7 @@ class StartScreen extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, RouteNames.loginRoute);
+                    Navigator.pushNamed(context, RouteNames.loginRoute);
                   },
                   child: Text(
                     'account',

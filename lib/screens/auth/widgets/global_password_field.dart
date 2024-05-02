@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:size_util/size_util.dart';
-
-import '../../../utils/styles/app_text_styles.dart';
 
 class GlobalPasswordField extends StatefulWidget {
   const GlobalPasswordField({
     super.key,
     required this.title,
-    required this.iconPath,
+    required this.icon,
     required this.controller,
+    required this.validate,
   });
 
   final String title;
-  final String iconPath;
+  final Widget icon;
   final TextEditingController controller;
+  final RegExp validate;
 
   @override
   State<GlobalPasswordField> createState() => _GlobalPasswordFieldState();
@@ -27,57 +26,64 @@ class _GlobalPasswordFieldState extends State<GlobalPasswordField> {
   Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
-    return Container(
-      decoration: BoxDecoration(boxShadow: [
-        BoxShadow(
-          blurRadius: 3.30,
-          color: Colors.black.withOpacity(0.25),
-          offset: const Offset(0, 3.30),
-        )
-      ]),
-      child: TextField(
-        textInputAction: TextInputAction.next,
-        controller: widget.controller,
-        obscureText: isVisible,
-        decoration: InputDecoration(
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: const BorderSide(
-              color: Colors.transparent,
-            ),
+    return TextFormField(
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      validator: (value) {
+        if (value!.isEmpty) {
+          return 'Enter password';
+        }
+        if (!widget.validate.hasMatch(value)) {
+          return 'Incorrect password';
+        }
+        return null;
+      },
+      textInputAction: TextInputAction.next,
+      controller: widget.controller,
+      obscureText: isVisible,
+      decoration: InputDecoration(
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(9),
+          borderSide: const BorderSide(
+            color: Colors.green,
           ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: const BorderSide(
-              color: Colors.transparent,
-            ),
-          ),
-          filled: true,
-          fillColor: Colors.white,
-          isDense: true,
-          contentPadding: EdgeInsets.all(12.w),
-          prefixIcon: Padding(
-            padding: EdgeInsets.only(right: 8.w, left: 12.w),
-            child: SvgPicture.asset(widget.iconPath),
-          ),
-          suffixIcon: Material(
-            color: Colors.transparent,
-            child: Ink(
-              child: InkWell(
-                borderRadius: BorderRadius.circular(50),
-                onTap: () {
-                  isVisible = !isVisible;
-                  setState(() {});
-                },
-                child: isVisible
-                    ? const Icon(Icons.remove_red_eye)
-                    : const Icon(Icons.visibility_off),
-              ),
-            ),
-          ),
-          hintText: widget.title,
-          hintStyle: AppTextStyle.interRegular,
         ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(9),
+          borderSide: const BorderSide(
+            color: Colors.blue,
+          ),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(9),
+          borderSide: const BorderSide(
+            color: Colors.red,
+          ),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(9),
+          borderSide: const BorderSide(
+            color: Colors.red,
+          ),
+        ),
+        isDense: true,
+        contentPadding: EdgeInsets.only(top: 7.h, bottom: 7.h),
+        prefixIcon: widget.icon,
+        suffixIcon: Material(
+          color: Colors.transparent,
+          child: Ink(
+            child: InkWell(
+              borderRadius: BorderRadius.circular(50),
+              onTap: () {
+                isVisible = !isVisible;
+                setState(() {});
+              },
+              child: isVisible
+                  ? const Icon(Icons.remove_red_eye, color: Colors.green)
+                  : const Icon(Icons.visibility_off, color: Colors.green),
+            ),
+          ),
+        ),
+        hintText: widget.title,
       ),
     );
   }
