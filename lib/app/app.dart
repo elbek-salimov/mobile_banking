@@ -18,15 +18,19 @@ class App extends StatelessWidget {
     LocalNotificationService.localNotificationService.init(navigatorKey);
     return MultiRepositoryProvider(
       providers: [
-        RepositoryProvider(create: (_)=> AuthRepository())
+        RepositoryProvider(
+          create: (_) => AuthRepository(),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
-          BlocProvider(create: (_) => AuthBloc()),
           BlocProvider(
-            create: (_) =>
-            ConnectivityBloc()
-              ..add(CheckConnectivity()),
+            create: (_) => AuthBloc(
+              authRepository: AuthRepository(),
+            )..add(CheckAuthenticationEvent()),
+          ),
+          BlocProvider(
+            create: (_) => ConnectivityBloc()..add(CheckConnectivity()),
           ),
         ],
         child: MaterialApp(
@@ -35,7 +39,7 @@ class App extends StatelessWidget {
           initialRoute: RouteNames.splashScreen,
           onGenerateRoute: AppRoutes.generateRoute,
           navigatorKey: navigatorKey,
-        )
+        ),
       ),
     );
   }

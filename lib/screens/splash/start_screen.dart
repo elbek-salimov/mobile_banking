@@ -54,7 +54,7 @@ class StartScreen extends StatelessWidget {
                   child: Text(
                     'account',
                     style: AppTextStyle.interRegular
-                        .copyWith(fontSize: 13, color: Colors.blueAccent),
+                        .copyWith(fontSize: 13, color: Colors.green),
                   ),
                 )
               ],

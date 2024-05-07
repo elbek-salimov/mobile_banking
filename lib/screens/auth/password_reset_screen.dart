@@ -20,6 +20,8 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
     super.dispose();
   }
 
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;
@@ -43,6 +45,7 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
                   AppTextStyle.interLight.copyWith(fontSize: 18)),
               SizedBox(height: 20.h),
               GlobalTextField(
+                formKey: _formKey,
                 validateEmptyText: 'Enter email',
                 validateText: 'Incorrect email',
                 validate: AppConstants.emailRegExp,
@@ -58,7 +61,12 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.green,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    final isValidate = _formKey.currentState!.validate();
+                    if(isValidate && emailController.text.isNotEmpty){
+                      // TODO reset password
+                    }
+                  },
                   child: Text(
                     'Reset',
                     style: AppTextStyle.interBold.copyWith(color: Colors.white),

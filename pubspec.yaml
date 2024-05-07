@@ -26,6 +26,7 @@ dependencies:
   google_sign_in: ^6.2.1
   flutter_local_notifications: ^17.1.1
   flutter_timezone: ^1.0.4
+  cloud_firestore: ^4.17.2
   size_util:
     path: packages/size_util
 
