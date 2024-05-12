@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../blocks/connectivity/connectivity_bloc.dart';
-import '../../blocks/connectivity/connectivity_state.dart';
+import '../../blocs/connectivity/connectivity_bloc.dart';
+import '../../blocs/connectivity/connectivity_state.dart';
 import '../../utils/styles/app_text_styles.dart';
 
 class NoInternetScreen extends StatefulWidget {

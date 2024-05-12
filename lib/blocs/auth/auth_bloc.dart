@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_banking/data/models/forms_state.dart';
 import 'package:mobile_banking/data/models/network_response.dart';
@@ -29,6 +30,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   _checkAuthentication(CheckAuthenticationEvent event, emit) {
     User? user = FirebaseAuth.instance.currentUser;
+    debugPrint("CURRENT USER:$user");
     if (user == null) {
       emit(state.copyWith(status: FormsStatus.unauthenticated));
     } else {
@@ -45,7 +47,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
 
     if (networkResponse.errorText.isEmpty) {
-      emit(state.copyWith(status: FormsStatus.authenticated));
+      UserCredential userCredential = networkResponse.data as UserCredential;
+
+      UserModel userModel =
+          state.userModel.copyWith(uuid: userCredential.user!.uid);
+      emit(
+        state.copyWith(
+          status: FormsStatus.authenticated,
+          userModel: userModel,
+        ),
+      );
     } else {
       emit(state.copyWith(
           status: FormsStatus.error, errorMessage: networkResponse.errorText));
@@ -61,8 +72,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
 
     if (networkResponse.errorText.isEmpty) {
-      emit(state.copyWith(
-          status: FormsStatus.authenticated, statusMessage: 'registered'));
+      UserCredential userCredential = networkResponse.data as UserCredential;
+      UserModel userModel = event.userModel.copyWith(
+        uuid: userCredential.user!.uid,
+      );
+      emit(
+        state.copyWith(
+          status: FormsStatus.authenticated,
+          statusMessage: 'registered',
+          userModel: userModel,
+        ),
+      );
     } else {
       emit(state.copyWith(
           status: FormsStatus.error, errorMessage: networkResponse.errorText));

@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile_banking/screens/auth/widgets/global_password_field.dart';
-import 'package:mobile_banking/screens/auth/widgets/global_textfield.dart';
+import 'package:mobile_banking/screens/widgets/global_password_field.dart';
+import 'package:mobile_banking/screens/widgets/global_textfield.dart';
 import 'package:mobile_banking/screens/routes.dart';
 import 'package:mobile_banking/utils/constants/app_constants.dart';
 import 'package:mobile_banking/utils/images/app_images.dart';
 import 'package:mobile_banking/utils/styles/app_text_styles.dart';
 import 'package:size_util/size_util.dart';
 
-import '../../blocks/auth/auth_bloc.dart';
-import '../../data/models/forms_state.dart';
+import '../../blocs/auth/auth_bloc.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -49,20 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
           },
         ),
       ),
-      body: BlocConsumer<AuthBloc, AuthState>(
-        listener: (context, state) {
-          if (state.status == FormsStatus.error) {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(SnackBar(content: Text(state.errorMessage)));
-          }
-          if (state.status == FormsStatus.authenticated) {
-            if (state.statusMessage == 'registered') {
-              //TODO save user data
-            }
-            Navigator.pushNamedAndRemoveUntil(
-                context, RouteNames.tabRoute, (route) => false);
-          }
-        },
+      body: BlocBuilder<AuthBloc, AuthState>(
         builder: (context, state) {
           return Padding(
             padding: EdgeInsets.only(left: 32.w, right: 32.w, top: 48.h),
@@ -113,8 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(
-                            context, RouteNames.passwordReset);
+                        Navigator.pushNamed(context, RouteNames.passwordResetScreen);
                       },
                       child: Text(
                         'Forgot password',
@@ -141,21 +126,26 @@ class _LoginScreenState extends State<LoginScreen> {
                       backgroundColor: Colors.green,
                     ),
                     onPressed: () {
-                      final isValidateOne = _formKeyOne.currentState!.validate();
-                      final isValidateTwo = _formKeyTwo.currentState!.validate();
+                      final isValidateOne =
+                          _formKeyOne.currentState!.validate();
+                      final isValidateTwo =
+                          _formKeyTwo.currentState!.validate();
                       if (emailController.text.isNotEmpty &&
                           passwordController.text.isNotEmpty &&
-                          isValidateOne && isValidateTwo) {
-                        context.read<AuthBloc>().add(LoginUserEvent(
-                              email: emailController.text,
-                              password: passwordController.text,
-                            ));
+                          isValidateOne &&
+                          isValidateTwo) {
+                        context.read<AuthBloc>().add(
+                              LoginUserEvent(
+                                email: emailController.text,
+                                password: passwordController.text,
+                              ),
+                            );
                       }
                     },
                     child: Text(
                       'Continue',
-                      style: AppTextStyle.interBold
-                          .copyWith(color: Colors.white),
+                      style:
+                          AppTextStyle.interBold.copyWith(color: Colors.white),
                     ),
                   ),
                 ),
@@ -184,7 +174,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Text(
                           'Google',
                           style: AppTextStyle.interSemiBold.copyWith(
-                            fontSize: 24,
+                            fontSize: 20,
                             color: Colors.black.withOpacity(0.7),
                           ),
                         )

@@ -31,8 +31,20 @@ class DeleteUserEvent extends ProfileEvent{
   List<Object?> get props => [userModel];
 }
 
-class GetUserEvent extends ProfileEvent{
+class GetUserByDocIdEvent extends ProfileEvent{
+  final String docId;
+
+  const GetUserByDocIdEvent({required this.docId});
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [docId];
+}
+
+class GetUserByUuidEvent extends ProfileEvent{
+  final String uuid;
+
+  const GetUserByUuidEvent(this.uuid);
+
+  @override
+  List<Object?> get props => [uuid];
 }

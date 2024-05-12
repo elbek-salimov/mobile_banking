@@ -1,5 +1,7 @@
 class AppImages {
   // svg
+  static String microphone = 'assets/icons/microphone.svg';
+  static String send = 'assets/icons/send.svg';
 
 
   // jpg
@@ -14,4 +16,11 @@ class AppImages {
   static String cards = 'assets/icons/cards.png';
   static String pay = 'assets/icons/pay.png';
   static String profile = 'assets/icons/profile.png';
+  static String kyc = 'assets/icons/kyc.png';
+  static String logout = 'assets/icons/logout.png';
+  static String notification = 'assets/icons/notification.png';
+  static String support = 'assets/icons/support.png';
+  static String theme = 'assets/icons/theme.png';
+  static String nationalIdCardFront = 'assets/images/national_idcard_front.png';
+  static String nationalIdCardBack = 'assets/images/national_idcard_back.png';
 }

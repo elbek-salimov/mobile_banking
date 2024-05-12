@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_banking/screens/auth/widgets/global_textfield.dart';
+import 'package:mobile_banking/screens/widgets/global_textfield.dart';
 import 'package:mobile_banking/utils/constants/app_constants.dart';
 import 'package:size_util/size_util.dart';
 import '../../utils/styles/app_text_styles.dart';
