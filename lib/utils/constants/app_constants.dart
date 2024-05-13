@@ -11,11 +11,12 @@ class AppConstants {
   static String clientID =
       "699471060311-boktfei0alnfbjc140gako8vvncn4opj.apps.googleusercontent.com";
 
-  // Market structure
-  static String categories = "categories";
-  static String products = "products";
+  // Main constants
   static String users = "users";
   static String notifications = "notifications";
+  static String cards = "cards";
+  static String cardsDatabase = "cards_database";
+
 
   // FCM token
   static String fcmToken =

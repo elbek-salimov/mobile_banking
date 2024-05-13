@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_banking/screens/tab/cards/cards_screen.dart';
-import 'package:mobile_banking/screens/tab/pay/pay_screen.dart';
 import 'package:mobile_banking/screens/tab/profile/profile_screen.dart';
 import 'package:mobile_banking/screens/tab/statistics/statistics_screen.dart';
 import 'package:size_util/size_util.dart';
@@ -24,7 +23,6 @@ class _TabScreenState extends State<TabScreen> {
   List<Widget> screens = [
     const HomeScreen(),
     const StatisticsScreen(),
-    const PayScreen(),
     const CardsScreen(),
     const ProfileScreen(),
   ];
@@ -67,8 +65,6 @@ class _TabScreenState extends State<TabScreen> {
                     height: 25.h, color: Colors.green),
               ),
               BottomNavigationBarItem(
-                  icon: SizedBox(height: 25.h), label: 'Pay'),
-              BottomNavigationBarItem(
                 icon: Image.asset(AppImages.cards, height: 25.h),
                 label: "Cards",
                 activeIcon: Image.asset(AppImages.cards,
@@ -89,12 +85,15 @@ class _TabScreenState extends State<TabScreen> {
         backgroundColor: Colors.green,
         child: Container(
           margin: EdgeInsets.all(10.h),
-          decoration: BoxDecoration(shape: BoxShape.circle, boxShadow: [
-            BoxShadow(
-              color: Colors.green.withOpacity(0.4),
-              spreadRadius: 16.w,
-            )
-          ]),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.green.withOpacity(0.4),
+                spreadRadius: 16.w,
+              )
+            ],
+          ),
           child: Image.asset(AppImages.pay),
         ),
         onPressed: () {

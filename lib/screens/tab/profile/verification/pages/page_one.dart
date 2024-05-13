@@ -50,7 +50,7 @@ class PageOne extends StatelessWidget {
           ),
           SizedBox(height: 30.h),
           Text(
-            'Scan the front side of NID card with camera',
+            'Scan the back side of NID card with camera',
             style: AppTextStyle.interMedium
                 .copyWith(fontSize: 12, color: Colors.grey),
           ),
