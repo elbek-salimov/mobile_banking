@@ -28,6 +28,8 @@ dependencies:
   flutter_timezone: ^1.0.4
   cloud_firestore: ^4.17.2
   local_auth: ^2.2.0
+  mask_text_input_formatter: ^2.9.0
+  intl: ^0.19.0
   size_util:
     path: packages/size_util
 

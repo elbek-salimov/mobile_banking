@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_banking/blocs/card/cards_bloc.dart';
 import 'package:mobile_banking/blocs/tab/tab_bloc.dart';
+import 'package:mobile_banking/blocs/transaction/transaction_bloc.dart';
 import 'package:mobile_banking/data/repositories/auht_repository.dart';
+import 'package:mobile_banking/data/repositories/cards_repository.dart';
 import 'package:mobile_banking/data/repositories/profile_repository.dart';
 import 'package:mobile_banking/services/local_notification_service.dart';
 
@@ -27,6 +30,9 @@ class App extends StatelessWidget {
         RepositoryProvider(
           create: (_) => ProfileRepository(),
         ),
+        RepositoryProvider(
+          create: (_) => CardsRepository(),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -43,6 +49,14 @@ class App extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => ProfileBloc(context.read<ProfileRepository>()),
+          ),
+          BlocProvider(
+            create: (context) =>
+                UserCardsBloc(cardsRepository: context.read<CardsRepository>()),
+          ),
+          BlocProvider(
+            create: (context) => TransactionBloc(
+                cardsRepository: context.read<CardsRepository>()),
           )
         ],
         child: MaterialApp(

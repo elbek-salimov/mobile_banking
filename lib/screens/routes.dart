@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_banking/screens/splash/splash_screen.dart';
 import 'package:mobile_banking/screens/splash/start_screen.dart';
+import 'package:mobile_banking/screens/tab/cards/add_card/add_card_screen.dart';
 import 'package:mobile_banking/screens/tab/pay/pay_screen.dart';
 import 'package:mobile_banking/screens/tab/profile/edit/edit_profile_screen.dart';
 import 'package:mobile_banking/screens/tab/profile/notification/notification_screen.dart';
@@ -51,6 +52,9 @@ class AppRoutes {
       case RouteNames.payScreen:
         return navigate(const PayScreen());
 
+      case RouteNames.addCardScreen:
+        return navigate(const AddCardScreen());
+
       // case RouteNames.editProduct:
       //   Map<String, dynamic> map = settings.arguments as Map<String, dynamic>;
       //   return navigate(EditProductScreen(
@@ -96,4 +100,5 @@ class RouteNames {
   static const String supportScreen = "/support_route";
   static const String kycVerificationScreen = "/kycVerification_route";
   static const String payScreen = "/pay_route";
+  static const String addCardScreen = "/addCard_route";
 }

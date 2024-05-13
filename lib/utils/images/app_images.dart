@@ -23,4 +23,8 @@ class AppImages {
   static String theme = 'assets/icons/theme.png';
   static String nationalIdCardFront = 'assets/images/national_idcard_front.png';
   static String nationalIdCardBack = 'assets/images/national_idcard_back.png';
+  static String chip = 'assets/images/chip.png';
+  static String uzcard = 'assets/images/uzcard.png';
+  static String humo = 'assets/images/humo.png';
+  static String visa = 'assets/images/visa.png';
 }
